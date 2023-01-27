@@ -1,6 +1,6 @@
 import boto3
 from moto import mock_dynamodb
-from create import lambda_handler as triagle_create, get_response
+from create import lambda_handler as triagle_create, get_response, Triangle
 from history import lambda_handler as triangle_history
 from http import HTTPStatus
 import unittest
@@ -11,6 +11,9 @@ SUCCESS = "success"
 STATUS_CODE = "status_code"
 MESSAGE = "message"
 ERROR = "error"
+EQUILATERAL = "equilateral"
+ISOSCELES = "isosceles"
+SCALENE = "scalene"
 
 
 @mock_dynamodb
@@ -32,7 +35,7 @@ class TestTriangle(unittest.TestCase):
 
         self.assertEqual(result[STATUS], SUCCESS)
         self.assertEqual(result[STATUS_CODE], HTTPStatus.CREATED)
-        self.assertEqual(result[MESSAGE], "equilateral")
+        self.assertEqual(result[MESSAGE], EQUILATERAL)
 
     def test_create_scalene(self):
 
@@ -41,7 +44,7 @@ class TestTriangle(unittest.TestCase):
 
         self.assertEqual(result[STATUS], SUCCESS)
         self.assertEqual(result[STATUS_CODE], HTTPStatus.CREATED)
-        self.assertEqual(result[MESSAGE], "scalene")
+        self.assertEqual(result[MESSAGE], SCALENE)
 
     def test_create_isosceles(self):
 
@@ -50,7 +53,7 @@ class TestTriangle(unittest.TestCase):
 
         self.assertEqual(result[STATUS], SUCCESS)
         self.assertEqual(result[STATUS_CODE], HTTPStatus.CREATED)
-        self.assertEqual(result[MESSAGE], "isosceles")
+        self.assertEqual(result[MESSAGE], ISOSCELES)
 
     def test_invalid_shape(self):
 
@@ -63,8 +66,8 @@ class TestTriangle(unittest.TestCase):
     def test_history(self):
 
         table = self.dynamodb.Table("triangles")
-        table.put_item(Item={"id": "1", "t_type": "isosceles", "lenghts": [1, 1, 1]})
-        table.put_item(Item={"id": "2", "t_type": "isosceles", "lenghts": [1, 1, 1]})
+        table.put_item(Item={"id": "1", "t_type": ISOSCELES, "lenghts": [1, 1, 1]})
+        table.put_item(Item={"id": "2", "t_type": ISOSCELES, "lenghts": [1, 1, 1]})
 
         event = {}
         result = triangle_history(event, self.context)
@@ -82,3 +85,17 @@ class TestTriangle(unittest.TestCase):
             get_response(False, ERROR),
             {STATUS: ERROR, MESSAGE: ERROR, STATUS_CODE: HTTPStatus.OK},
         )
+
+    def test_triangle_shape(self):
+        #valid
+        self.assertEqual(Triangle(lenghts=["1", 1, 1.0]).get_type(), EQUILATERAL)
+        self.assertEqual(Triangle(lenghts=[1, 2, 3]).get_type(), SCALENE)
+        self.assertEqual(Triangle(lenghts=[1, 2, 2]).get_type(), ISOSCELES)
+        
+        #invalid shape
+        with self.assertRaises(ValueError):
+            Triangle(lenghts=[3, 3, 10])
+        
+        #invalid value
+        with self.assertRaises(ValueError):
+            Triangle(lenghts=["ten", 10, 10])
