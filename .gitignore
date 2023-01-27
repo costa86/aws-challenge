@@ -1,0 +1,7 @@
+venv
+main.py
+.vscode
+sample.py
+.pytest_cache
+__pycache__/
+*.py[cod]
