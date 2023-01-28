@@ -8,8 +8,8 @@ The types can be:
 | Isosceles   | Two sides are of equal length.                                                                                         |
 | Scalene     | No sides are of equal length.                                                     |
 
-
 ## Credentials
+
 1. Sign in [here](https://triangle-api.auth.eu-west-3.amazoncognito.com/login?client_id=2bflmmtop8r80gvj6e36ru2ahu&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://triangle-callback)
 2. Confirm your email
 3. Log in on the same page
