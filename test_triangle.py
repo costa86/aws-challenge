@@ -89,8 +89,9 @@ class TestTriangle(unittest.TestCase):
     def test_triangle_shape(self):
         #valid
         self.assertEqual(Triangle(lenghts=["1", 1, 1.0]).get_type(), EQUILATERAL)
-        self.assertEqual(Triangle(lenghts=[1, 2, 3]).get_type(), SCALENE)
+        self.assertEqual(Triangle(lenghts=["1.4", 2, 3]).get_type(), SCALENE)
         self.assertEqual(Triangle(lenghts=[1, 2, 2]).get_type(), ISOSCELES)
+        self.assertEqual(Triangle(lenghts=[1, 1, 2]).get_type(), ISOSCELES)
         
         #invalid shape
         with self.assertRaises(ValueError):
