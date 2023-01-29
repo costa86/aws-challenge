@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "b8165a2d-b329-4e8b-8f61-7d53cad204db",
+		"name": "Triangle API",
+		"description": "### Validates a triangle type based on the lenghts of its sides. Them queries them from a database.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22809238"
+	},
+	"item": [
+		{
+			"name": "Create triangle shape",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiJhcHlnU29BaVRITjFVRlJ4U0NZR1pwaVo1NWxGVmFNd3N6OWprY080WFE4PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MGY1ODQxYS02YzM2LTQ4YzEtODBiMi1mYmU4Yjc3MDViMDAiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuZXUtd2VzdC0zLmFtYXpvbmF3cy5jb21cL2V1LXdlc3QtM19wTzg1VzQzVk0iLCJ2ZXJzaW9uIjoyLCJjbGllbnRfaWQiOiIyYmZsbW10b3A4cjgwZ3ZqNmUzNnJ1MmFodSIsImV2ZW50X2lkIjoiMjg0ZmFiMGQtOTI3Mi00ZmQ2LWJkOTgtMWRmMjA5YjdjMDJkIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiBwaG9uZSBvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF1dGhfdGltZSI6MTY3NDk5NTE4MCwiZXhwIjoxNjc0OTk4NzgwLCJpYXQiOjE2NzQ5OTUxODAsImp0aSI6ImU2OWI4Y2I3LTY3MWQtNGUyNS05ZjY1LTQwMzViZDc0Zjc3NSIsInVzZXJuYW1lIjoiamFjayJ9.C27ol3_ErOpNyxMpUDkHU7tgXabq1fUXMQ-t8GI9R4y1-8oJaRUw5CFREly4h1ApdsBDpjUC1QEP2En38ufbbMx4izmjER2bW2uMcKzYjS-3NziqI70AWgepCmf-C_DG9sp-JgK65UTEMC1AUwSFYBYSJishmgUDrcfpWAScs_Ql-yxFsvfnsLdNffdnYvfL9mtYxQah66AcoIbSqui6QLD2ZFLySeAoS92mZgwjU8WSU9A-DILk5vr8ClDC9nMaKsFjEd-GFvd6se3Ou_WHWhkof72TM695nPvVfuomHwVjsLC4acqBsdjIRvr0nL9CgrOZYAzT2dNujAxIKZutEg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lenghts\":[2,3,\"5\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vfvfjilr2k.execute-api.eu-west-3.amazonaws.com/v1",
+					"protocol": "https",
+					"host": [
+						"vfvfjilr2k",
+						"execute-api",
+						"eu-west-3",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"v1"
+					]
+				},
+				"description": "Creates a triangle shape.\n\nAbout the `lenghts` array:\n\n1. Must contain 3 values\n2. Values must be positive\n3. String, float or integer are accepted\n4. The sum of any 2 values cannot not be less then the third one\n    \n\nResponse example:\n\n`{ \"status\": \"success\", \"message\": \"isosceles\", \"status_code\": 201}`"
+			},
+			"response": []
+		},
+		{
+			"name": "Get triangle shapes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJraWQiOiJhcHlnU29BaVRITjFVRlJ4U0NZR1pwaVo1NWxGVmFNd3N6OWprY080WFE4PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MGY1ODQxYS02YzM2LTQ4YzEtODBiMi1mYmU4Yjc3MDViMDAiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuZXUtd2VzdC0zLmFtYXpvbmF3cy5jb21cL2V1LXdlc3QtM19wTzg1VzQzVk0iLCJ2ZXJzaW9uIjoyLCJjbGllbnRfaWQiOiIyYmZsbW10b3A4cjgwZ3ZqNmUzNnJ1MmFodSIsImV2ZW50X2lkIjoiNjA5YTFhODMtODg5Ny00ZDljLTgyZTQtNWNjZWIyYTk4NzkxIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiBwaG9uZSBvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF1dGhfdGltZSI6MTY3NDkzMjcwMCwiZXhwIjoxNjc0OTM2MzAwLCJpYXQiOjE2NzQ5MzI3MDAsImp0aSI6IjM3MTM3ODA1LTdmMTUtNDY1YS04N2YwLTdjMjEwMGYyNGI4NCIsInVzZXJuYW1lIjoiamFjayJ9.Xxvi5RqnTXNBImcn8ddM_PqIPdrkwvCYCcF0zA_6dxjYTvSaTICLqalkm1IBdmk1pSxPoOYa9Y097EIUZ3yBUb-5xkRy6flD38MpDYkhgGiQ08-sltIcplSAESSI9n_wNrm3n2UfZZDcrBU68O3TfKgOSe2FgYKLrKqDXHhxZhm2OLz0zcsqY0IsCyVCGN4PMGTQD9REutgcvOaaoM4cnQZyTR4jMVFnDmPQOMpNa8ouGXirm3U5_FtfxGwZiCmVvNXre15MZvdktfxAIZaKzJxKNfD9qgkRXC35Ge5XvcO-UJ57xIIokz9DeQUrwO6b8mxpH2QsTV2t61It6R-utQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vfvfjilr2k.execute-api.eu-west-3.amazonaws.com/v1",
+					"protocol": "https",
+					"host": [
+						"vfvfjilr2k",
+						"execute-api",
+						"eu-west-3",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"v1"
+					]
+				},
+				"description": "Retrieves all the triangle shapes from the database.\n\nResponse example:\n\n`[ { \"created_at\": \"2023-01-27T21:00:39\", \"id\": \"a6d9bd56-9e85-11ed-b101-0f1d36066aa4\", \"lenghts\": [ 3, 5, 4 ], \"t_type\": \"scalene\" }, { \"created_at\": \"2023-01-27T20:59:41\", \"id\": \"849715e9-9e85-11ed-b101-0f1d36066aa4\", \"lenghts\": [ 3, 4, 4 ], \"t_type\": \"isosceles\" }]`"
+			},
+			"response": []
+		}
+	]
+}
