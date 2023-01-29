@@ -3,6 +3,7 @@
 
 - [Table of Contents:](#table-of-contents)
 - [Description](#description)
+- [Triangle current database model](#triangle-current-database-model)
 - [Credentials](#credentials)
   - [Admin](#admin)
   - [API User](#api-user)
@@ -23,6 +24,14 @@ The types can be:
 | Isosceles   | Two sides are of equal length.       |
 | Scalene     | No sides are of equal length.        |
 
+## Triangle current database model
+
+|Field|Example|Note|
+|--|--|--|
+created_at|2023-01-27T21:00:39|creation timestamp|
+id|a6d9bd56-9e85-11ed-b101-0f1d36066aa4|database ID|
+lenghts|[ 3, 5, 4 ] | triangle lenghts
+t_type |scalene | triangle type|
 ## Credentials
 
 ### Admin
